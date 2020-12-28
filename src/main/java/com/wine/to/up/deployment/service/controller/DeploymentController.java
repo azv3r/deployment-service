@@ -24,9 +24,15 @@ public class DeploymentController {
     private DeploymentService deploymentService;
 
     private ApplicationInstanceService applicationInstanceService;
+
     private ApplicationInstanceManager applicationInstanceManager;
 
     private ApplicationService applicationTemplateService;
+
+    @Autowired
+    public void setApplicationInstanceManager(final ApplicationInstanceManager applicationInstanceManager) {
+        this.applicationInstanceManager = applicationInstanceManager;
+    }
 
     @Autowired
     public void setDeploymentService(final DeploymentService deploymentService) {
@@ -96,7 +102,7 @@ public class DeploymentController {
     public void deleteApplicationInstance(@PathVariable Long id) {
         applicationInstanceService.removeEntitiesByIds(Collections.singletonList(id));
     }
-
+    
     @PostMapping("/applicationInstance/stop/{id}")
     public void stopApplicationInstance(@PathVariable Long id)   {
         applicationInstanceManager.stopApp(this.deploymentService.getSingleInstanceById(id));
@@ -105,7 +111,6 @@ public class DeploymentController {
     @PostMapping("/applicationInstance/start/{id}")
     public void startApplicationInstance(@PathVariable Long id)   {
         applicationInstanceManager.startApp(this.deploymentService.getSingleInstanceById(id));
-
     }
 
     @PostMapping("/applicationInstance/restart/{id}")
