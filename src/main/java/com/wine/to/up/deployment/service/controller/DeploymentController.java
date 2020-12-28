@@ -11,13 +11,14 @@ import com.wine.to.up.deployment.service.vo.ApplicationTemplateVO;
 import com.wine.to.up.deployment.service.vo.SettingsVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.ws.rs.NotFoundException;
 import java.util.Collections;
 import java.util.List;
 
-@RestController
+@Controller
 public class DeploymentController {
 
     private DeploymentService deploymentService;
